@@ -26,11 +26,11 @@ after_test:
   - DEL ..\Build\Pext.bat1
   - cd ..\Build
   - echo !define APPNAME "Pext" > Pext.nsi
-  - echo !define MUI_FINISHPAGE_NOAUTOCLOSE
-  - echo !define MUI_FINISHPAGE_RUN
-  - echo !define MUI_FINISHPAGE_RUN_TEXT "Launch Pext"
-  - echo !define MUI_FINISHPAGE_RUN_FUNCTION "LaunchLink"
-  - echo !insertmacro MUI_PAGE_FINISH
+  - echo !define MUI_FINISHPAGE_NOAUTOCLOSE >> Pext.nsi
+  - echo !define MUI_FINISHPAGE_RUN >> Pext.nsi
+  - echo !define MUI_FINISHPAGE_RUN_TEXT "Launch Pext" >> Pext.nsi
+  - echo !define MUI_FINISHPAGE_RUN_FUNCTION "LaunchLink" >> Pext.nsi
+  - echo !insertmacro MUI_PAGE_FINISH >> Pext.nsi
   - echo Name ${APPNAME} >> Pext.nsi
   - echo Icon 'Pext\pext\images\scalable\pext.ico' >> Pext.nsi
   - echo OutFile 'Pext.exe' >> Pext.nsi
