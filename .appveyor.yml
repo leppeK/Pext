@@ -25,7 +25,8 @@ after_test:
   - ps: get-content ..\Build\Pext.bat1 | set-content ..\Build\Pext.bat
   - DEL ..\Build\Pext.bat1
   - cd ..\Build
-  - echo !define APPNAME "Pext" > Pext.nsi
+  - echo !include "MUI.nsh" > Pext.nsi
+  - echo !define APPNAME "Pext" >> Pext.nsi
   - echo !define MUI_FINISHPAGE_NOAUTOCLOSE >> Pext.nsi
   - echo !define MUI_FINISHPAGE_RUN >> Pext.nsi
   - echo !define MUI_FINISHPAGE_RUN_TEXT "Launch Pext" >> Pext.nsi
