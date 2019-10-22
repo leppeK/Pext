@@ -26,6 +26,11 @@ after_test:
   - DEL ..\Build\Pext.bat1
   - cd ..\Build
   - echo !define APPNAME "Pext" > Pext.nsi
+  - echo !define MUI_FINISHPAGE_NOAUTOCLOSE
+  - echo !define MUI_FINISHPAGE_RUN
+  - echo !define MUI_FINISHPAGE_RUN_TEXT "Launch Pext"
+  - echo !define MUI_FINISHPAGE_RUN_FUNCTION "LaunchLink"
+  - echo !insertmacro MUI_PAGE_FINISH
   - echo Name ${APPNAME} >> Pext.nsi
   - echo Icon 'Pext\pext\images\scalable\pext.ico' >> Pext.nsi
   - echo OutFile 'Pext.exe' >> Pext.nsi
@@ -50,6 +55,14 @@ after_test:
   - echo Delete "$SMPROGRAMS\Pext.lnk" >> Pext.nsi
   - echo RmDir /r "$INSTDIR" >> Pext.nsi
   - echo SectionEnd >> Pext.nsi
+  - echo: >-
+      Function LaunchLink
+        MessageBox MB_OK "Reached LaunchLink $\r$\n \
+                        SMPROGRAMS: $SMPROGRAMS  $\r$\n \
+                        Start Menu Folder: $STARTMENU_FOLDER $\r$\n \
+                        InstallDirectory: $INSTDIR "
+        ExecShell "" "$SMPROGRAMS\Pext.lnk"
+      FunctionEnd
   - makensis Pext.nsi
   - cd ..\Pext
   - MOVE ..\Build\Pext.exe Pext.exe
