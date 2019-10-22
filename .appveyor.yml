@@ -55,14 +55,10 @@ after_test:
   - echo Delete "$SMPROGRAMS\Pext.lnk" >> Pext.nsi
   - echo RmDir /r "$INSTDIR" >> Pext.nsi
   - echo SectionEnd >> Pext.nsi
-  - echo: >-
-      Function LaunchLink
-        MessageBox MB_OK "Reached LaunchLink $\r$\n \
-                        SMPROGRAMS: $SMPROGRAMS  $\r$\n \
-                        Start Menu Folder: $STARTMENU_FOLDER $\r$\n \
-                        InstallDirectory: $INSTDIR "
-        ExecShell "" "$SMPROGRAMS\Pext.lnk"
-      FunctionEnd
+  - echo Function LaunchLink
+  - echo MessageBox MB_OK "Reached LaunchLink SMPROGRAMS $SMPROGRAMS Start Menu Folder $STARTMENU_FOLDER InstallDirectory $INSTDIR"
+  - echo ExecShell "" "$SMPROGRAMS\Pext.lnk"
+  - echo FunctionEnd
   - makensis Pext.nsi
   - cd ..\Pext
   - MOVE ..\Build\Pext.exe Pext.exe
